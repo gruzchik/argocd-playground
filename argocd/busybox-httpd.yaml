@@ -6,7 +6,6 @@ metadata:
 spec:
   project: default
   source:
-    chart: httpd
     repoURL: 'https://github.com/gruzchik/argocd-sandbox.git'
     path: structure/httpd
     targetRevision: main
