@@ -1,18 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: helm-nginx
+  name: argocd
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/gruzchik/argocd-sandbox.git'
-    path: structure/helm-charts/nginx-helm
+    repoURL: 'https://gitlab.com/[your username]/samplegitopsapp.git'
+    path: argocd
     targetRevision: main
-    helm:
-      releaseName: nginx
-      values: |
-        replicaCount: 2
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
