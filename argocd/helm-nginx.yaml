@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/gruzchik/argocd-sandbox.git'
-    path: structure/helm-chart
+    path: structure/helm-charts/nginx-helm
     targetRevision: main
     helm:
       releaseName: nginx

@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/gruzchik/argocd-sandbox.git'
-    path: structure/httpd
+    path: structure/helm-charts/httpd
     targetRevision: main
     helm:
       releaseName: httpd
