@@ -11,9 +11,11 @@ spec:
     targetRevision: main
     helm:
       releaseName: httpd
+      values: |
+        replicaCount: 2
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: default
+    namespace: argocd
   syncPolicy:
     automated:
       selfHeal: true
