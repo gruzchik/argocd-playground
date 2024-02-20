@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://gitlab.com/[username]/samplegitopsapp.git'
+    repoURL: 'https://github.com/gruzchik/argocd-sandbox.git'
     path: structure/extention-apps/apiservice
     targetRevision: main
   destination:
