@@ -7,9 +7,9 @@ resources:
 - ingress.yaml
 - namespace.yaml
 
-# configMapGenerator:
-# - name: caddy-config
-#     files:
-#     - Caddyfile
+configMapGenerator:
+- name: caddy-config
+  files:
+  - Caddyfile
 
 namespace: caddy
