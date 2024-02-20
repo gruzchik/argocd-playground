@@ -5,10 +5,11 @@ resources:
 - deployment.yaml
 - service.yaml
 - ingress.yaml
+- namespace.yaml
 
 # configMapGenerator:
 # - name: caddy-config
 #     files:
 #     - Caddyfile
 
-namespace: default
+namespace: caddy
