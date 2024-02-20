@@ -11,7 +11,7 @@ spec:
     targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: apiservice
+    namespace: default
   syncPolicy:
     automated:
       selfHeal: true
