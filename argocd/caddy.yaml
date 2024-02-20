@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+    name: caddy
+    namespace: argocd
+spec:
+    project: default
+    source:
+    repoURL: 'https://github.com/gruzchik/argocd-sandbox.git'
+    path: overlays
+    targetRevision: main
+    destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: caddy
+    syncPolicy:
+    automated:
+        selfHeal: true
+        prune: true
