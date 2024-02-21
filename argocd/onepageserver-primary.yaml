@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: onepageserver-primary
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/gruzchik/argocd-sandbox.git'
+    path: onepageserver
+    targetRevision: main
+  destination:
+    server: 'https://192.168.0.105:6443'
+    namespace: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
