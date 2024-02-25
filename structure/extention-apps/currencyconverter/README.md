@@ -16,10 +16,16 @@ You can also use a virtual enviornment (which is more recommended).
 You can build the image and run it using a command like the following:
 ```bash
 docker build  -t currencyconverter:1.0 .
-docker run -d -p 5555:5000 --env APIHOST='currency-conversion-and-exchange-rates.p.rapidapi.com' --env APIKEY='your-own-key' currencyconverter:1.0
+docker run -d -p 5555:5555 --env APIHOST='currency-conversion-and-exchange-rates.p.rapidapi.com' --env APIKEY='your-own-key' currencyconverter:1.0
 ```
 ## Running the application
 Whether you are using Docker or directly using Python, you can reach the application at http://localhost:5555
+
+## Push Docker image into Registry(DockerHub in this case)
+```
+docker login
+docker push currencyconverter:1.0
+```
 ## Working in Kubernetes
 You can deploy this application to any Kubernetes cluster using the manifests in the `k8s/base` directory. There are two Kustomize patches in the `k8s/overlays/development` and `k8s/overlays/production` directories. They switch Python Flask's `debug` mode on or off depending on the target environment.
 ### Storing the API key in a Secret
