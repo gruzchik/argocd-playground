@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/gruzchik/argocd-sandbox.git'
     targetRevision: HEAD
-    path: structure/extention-apps/currencyconverter/k8s/overlays/production
+    path: structure/extention-apps/currencyconverter/k8s/overlays/prod
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: default
