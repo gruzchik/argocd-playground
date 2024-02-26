@@ -8,7 +8,7 @@ export APIKEY=your-own-key
 ```
 You can start the application by running:
 ```bash
-pip3 install -t requirements.txt
+pip3 install -r requirements.txt
 python3 app.py
 ```
 You can also use a virtual enviornment (which is more recommended).
