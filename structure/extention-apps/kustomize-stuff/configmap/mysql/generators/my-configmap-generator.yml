@@ -1,0 +1,11 @@
+apiVersion: builtin
+kind: ConfigMapGenerator
+metadata:
+  name: mysql-config
+envs:
+- mysql-config.properties
+# literals:
+# - MYSQL_ROOT_PASSWORD=somepass
+# - MYSQL_DATABASE=somedb
+# files:
+# - obscure=longsecret.txt
