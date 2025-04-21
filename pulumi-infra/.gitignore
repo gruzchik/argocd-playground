@@ -1,0 +1,9 @@
+.pulumi
+.yarn/*
+
+/bin/
+node_modules/
+
+.env
+.envrc.local
+.direnv
