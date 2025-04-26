@@ -336,13 +336,13 @@ configAwsOrGcp:
   # gcp_credentials: ""
 
   # AWS IAM role to supply in the iam.amazonaws.com/role annotation of Postgres pods
-  # kube_iam_role: ""
+  kube_iam_role: "tf-k8s-pg-operator-role"
 
   # S3 bucket to use for shipping postgres daily logs
   # log_s3_bucket: ""
 
   # S3 bucket to use for shipping WAL segments with WAL-E
-  # wal_s3_bucket: ""
+  wal_s3_bucket: "tf-k8s-pg-operator-bucket"
 
   # GCS bucket to use for shipping WAL segments with WAL-E
   # wal_gs_bucket: ""
