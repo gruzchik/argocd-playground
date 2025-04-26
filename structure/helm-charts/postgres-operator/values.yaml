@@ -349,9 +349,6 @@ configAwsOrGcp:
 
   # Azure Storage Account to use for shipping WAL segments with WAL-G
   # wal_az_storage_account: ""
-  use_walg_backup: "true"
-  use_walg_restore: "true"
-  backup_schedule: '00 10 * * *'
 
 # configure K8s cron job managed by the operator
 configLogicalBackup:
