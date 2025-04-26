@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: pod-config
+  name: postgres-pod-config
 data:
   WAL_S3_BUCKET: postgresql
   WAL_BUCKET_SCOPE_PREFIX: ""
