@@ -336,7 +336,7 @@ configAwsOrGcp:
   # gcp_credentials: ""
 
   # AWS IAM role to supply in the iam.amazonaws.com/role annotation of Postgres pods
-  kube_iam_role: "tf-k8s-pg-operator-role"
+  kube_iam_role: "tf-k8s-pg-operator-rolle"
 
   # S3 bucket to use for shipping postgres daily logs
   # log_s3_bucket: ""
