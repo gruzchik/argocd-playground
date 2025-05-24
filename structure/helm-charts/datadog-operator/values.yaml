@@ -1,0 +1,87 @@
+# my-k8s-infra-repo/datadog-operator/values.yaml
+
+# Argo CD will use these values when rendering the datadog-operator chart.
+# These values largely map to the fields of the DatadogAgent CRD that the operator manages.
+
+# --- Global Datadog Agent Configuration ---
+# This section configures the DatadogAgent Custom Resource (DD.Agent)
+# that the Operator will deploy.
+# Think of this as the equivalent of the `datadog` section from the `datadog/datadog` chart,
+# but nested under `datadogAgent`.
+datadogAgent:
+  # Your Datadog Site (e.g., us1.datadoghq.com, eu1.datadoghq.com)
+  site: datadoghq.com
+
+  # API Key and App Key: It's best to store these in a Kubernetes Secret
+  # and reference them here.
+  # Assuming you create a secret named `datadog-secret` in the `datadog` namespace
+  # with keys `api-key` and `app-key`.
+  apiKeyExistingSecret: datadog-secret
+  appKeyExistingSecret: datadog-secret
+
+  # EKS Cluster Name: Crucial for tagging and organization in Datadog
+  clusterName: <YOUR_EKS_CLUSTER_NAME> # Replace with your actual EKS cluster name
+
+  # --- Agent Settings (DaemonSet) ---
+  agent:
+    # Enable metrics collection (CPU, Memory, Disk, Network) - usually default true
+    enabled: true
+    # Resource limits/requests for the Agent pods
+    # resource:
+    #   requests:
+    #     cpu: "100m"
+    #     memory: "128Mi"
+    #   limits:
+    #     cpu: "200m"
+    #     memory: "256Mi"
+
+    # Enable process monitoring (optional, but good for detailed CPU/Mem per process)
+    processAgent:
+      enabled: true
+
+    # Enable log collection (highly recommended for full observability)
+    log:
+      enabled: true
+      containerCollectAll: true # Collect logs from all containers
+      # logsEnabledContainer: true # Alternative if above doesn't work for your version
+
+  # --- Cluster Agent Settings (Deployment) ---
+  clusterAgent:
+    enabled: true
+    # Resource limits/requests for the Cluster Agent pods
+    # resource:
+    #   requests:
+    #     cpu: "50m"
+    #     memory: "64Mi"
+    #   limits:
+    #     cpu: "100m"
+    #     memory: "128Mi"
+
+  # --- Cluster Checks Runner (Optional) ---
+  # clusterChecksRunner:
+  #   enabled: true
+
+  # --- RBAC Permissions (usually handled automatically by the Operator) ---
+  # rbac:
+  #   create: true # Set to true if you want the Operator to create RBAC for the Agent
+
+  # --- AWS Integration with IRSA (Highly Recommended for EKS) ---
+  # If you want the Datadog Agent to collect AWS CloudWatch metrics (EC2, RDS, ALB, etc.)
+  # using IAM Roles for Service Accounts (IRSA).
+  # You'll need to create an IAM role with appropriate permissions and associate it with
+  # the Datadog Agent service account in Kubernetes.
+  # serviceAccount:
+  #   create: true
+  #   name: datadog-agent # Default name used by Operator
+  #   annotations:
+  #     eks.amazonaws.com/role-arn: arn:aws:iam::<YOUR_AWS_ACCOUNT_ID>:role/DatadogAWSIntegrationRole
+  # --- END AWS IRSA Section ---
+
+# --- Operator Specific Configuration ---
+# These values configure the Datadog Operator deployment itself (the controller)
+operator:
+  # Enable the Datadog Operator's admission controller (optional, but can be useful)
+  admissionController:
+    enabled: true
+  # Replicas for the Operator Deployment (e.g., for HA)
+  # replicas: 2
