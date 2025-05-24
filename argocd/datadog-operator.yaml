@@ -1,0 +1,27 @@
+# my-k8s-infra-repo/applications/datadog-operator-app.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: datadog-operator # Name of the Argo CD application
+  namespace: argocd # Namespace where Argo CD is installed
+spec:
+  project: default # Which Argo CD project this application belongs to
+  source:
+    repoURL: 'https://github.com/gruzchik/argocd-sandbox.git' # URL of your Git repository
+    targetRevision: main #HEAD # Or a specific branch (e.g., 'main'), tag, or commit SHA
+    path: "structure/helm-charts/datadog-operator" # The root of the repository, as the helm chart is specified by 'chart'
+    # chart: datadog-operator/ # The name of the chart from the Helm repository
+    # repoURL: https://helm.datadoghq.com # The Helm repository URL for datadog-operator chart
+    helm:
+      # Use valueFiles to specify your custom values.yaml in the Git repo
+      valueFiles:
+        - datadog-operator/values.yaml # Path to your custom values.yaml within the Git repo
+  destination:
+    server: https://kubernetes.default.svc # The target Kubernetes cluster URL (in-cluster)
+    namespace: datadog # The namespace where the Datadog Operator will be deployed
+  syncPolicy:
+    automated:
+      prune: true
+      # selfHeal: true
+    syncOptions:
+      - CreateNamespace=true # Argo CD will create the namespace if it doesn't exist
